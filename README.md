@@ -10,9 +10,11 @@ https://github.com/UniversalRobots/Universal_Robots_ROS_Driver
 
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md
 
+```
 Polyscope: 3.15.8.106339 
-UrCaps - external control - V1.0.5
 
+UrCaps - external control - V1.0.5
+```
 
 ## install
 
@@ -35,8 +37,11 @@ Please see this for an example to use ur3 with ROS [link](https://github.com/Uni
 
 ```
         Mascara subred: 255.255.255.0
+
         Puerta de enlace predeterminada: 192.168.56.1
+
         Robot UR3: 192.168.56.2
+
         PC       : 192.168.56.101:50002
 ```
 
