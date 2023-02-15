@@ -1,6 +1,6 @@
 # ur3_ros
 
-## install
+## Resources:
 
 
 https://github.com/ros-industrial/universal_robot
@@ -10,6 +10,8 @@ https://github.com/UniversalRobots/Universal_Robots_ROS_Driver
 
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md
 
+Polyscope: 3.15.8.106339 
+UrCaps - external control - V1.0.5
 
 
 ## install
@@ -30,8 +32,13 @@ https://repositorio.cinvestav.mx/bitstream/handle/cinvestav/3881/SSIT0016938.pdf
 Please see this for an example to use ur3 with ROS [link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md)
 
 1. Configuring the robot and PC ip address
+
+```
+        Mascara subred: 255.255.255.0
+        Puerta de enlace predeterminada: 192.168.56.1
         Robot UR3: 192.168.56.2
-        PC       : 192.168.56.101
+        PC       : 192.168.56.101:50002
+```
 
 2. Calibration file
 
@@ -39,17 +46,16 @@ Please see this for an example to use ur3 with ROS [link](https://github.com/Uni
     roslaunch ur_calibration calibration_correction.launch \
   robot_ip:=192.168.56.2 target_filename:="${HOME}/my_robot_calibration.yaml"
 ```
+
+roslaunch ur_calibration calibration_correction.launch robot_ip:=192.168.56.2 target_filename:="${HOME}/my_robot_calibration.yaml"
+
   see the file in config/my_robot_calibration.yaml
 
 3. launch the  driver
 
 ```
-roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=192.168.56.2
+roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=192.168.56.2 kinematics_config:="${HOME}/my_robot_calibration.yaml"
 ```
-
-roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=192.168.56.2 \
-  kinematics_config:=$(rospack find ur_calibration)/etc/ur10_example_calibration.yaml
-
 
 
 error:
@@ -367,3 +373,20 @@ shutting down processing monitor...
 done
 ```
 
+1.  Se revisa la intalacion del Control Externo URCap [aqui](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md)
+
+<!-- 1. De acuerdo con el [link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md) se necesita minimo polyscope 3.7. Se debe actualizar este! ver [link](https://www.universal-robots.com/articles/ur/how-to-videos/polyscope-software-update-on-cb3/) -->
+
+
+sudo ufw status: inactive ##firewall disable
+
+para revisar
+
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/590
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/589
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/509
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/441
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/440
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/272
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/254
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/182
