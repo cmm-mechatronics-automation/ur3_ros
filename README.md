@@ -395,3 +395,12 @@ https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/440
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/272
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/254
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/182
+
+
+## Config UrCaps
+
+see [link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md)
+
+## HElp
+
+se [UR forum](https://forum.universal-robots.com/c/ros/23) 
