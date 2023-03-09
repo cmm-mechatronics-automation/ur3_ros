@@ -378,12 +378,14 @@ shutting down processing monitor...
 done
 ```
 
-1.  Se revisa la intalacion del Control Externo URCap [aqui](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md)
+1.  Se revisa la instalación del Control Externo URCap [aqui](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md)
 
 <!-- 1. De acuerdo con el [link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md) se necesita minimo polyscope 3.7. Se debe actualizar este! ver [link](https://www.universal-robots.com/articles/ur/how-to-videos/polyscope-software-update-on-cb3/) -->
 
 
 sudo ufw status: inactive ##firewall disable
+
+nc -lk 50002 ## check this open port
 
 para revisar
 
