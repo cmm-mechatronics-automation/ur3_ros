@@ -37,11 +37,19 @@ roslaunch ur_robot_driver example_rviz.launch
 
 
 
-## Use moveit! 
+## Use moveit! [doc]()
+
+[ref1](https://youtu.be/ayp87SjrwPc)
+
 ```
 roslaunch ur3_moveit_config moveit_planning_execution.launch sim:=true
 
+roslaunch ur_robot_driver example_rviz.launch
+```
+
+```
 roslaunch ur3_moveit_config moveit_rviz.launch
+
 ```
 
 Luego de hacer la planeación en rviz, sale el error
@@ -70,9 +78,51 @@ a
 
 
 ```
-action_ns: follow_joint_trajectory
+action_ns: scaled_pos_traj_controller/follow_joint_trajectory
 
 ```
+
+-----
+
+Control the robot using the test_move script
+
+```
+rosrun ur_robot_driver test_move
+```
+
+Get the error
+
+```
+[ERROR] [1679953069.855385572]: A controller named 'scaled_vel_joint_traj_controller' was already loaded inside the controller manager
+[ERROR] [1679953069.856487405]: Robot control is currently inactive. Starting controllers that claim resources is currently not possible. Not starting controller 'scaled_vel_joint_traj_controller'
+[ERROR] [1679953069.856515156]: Could not switch controllers. The hardware interface combination for the requested controllers is unfeasible.
+[ERROR] [1679953071.592390894]: Can't accept new action goals. Controller is not running.
+```
+
+see [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/480#issuecomment-934506448), [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/380#issuecomment-844124263), [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/README.md)
+
+
+try to install
+
+```
+sudo apt install ros-noetic-scaled-controllers
+
+catkin build
+```
+
+Keeps the same problem, 
+
+
+PArece que lo unico es instalar URcaps, para poder controlar el robot desde ROS. La pregunta es si esto se puede hacer en URSim?? porque la Vbox no deja montar una USB!
+
+copy the urcap external control to the Vbox.
+
+```
+scp /home/user/externalcontrol-1.0.5.urcap  ur@192.168.56.102:/home/ur/ursim-current/programs
+```
+
+
+Ok solved the issue! :D
 
 
 
