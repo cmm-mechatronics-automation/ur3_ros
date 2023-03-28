@@ -10,6 +10,11 @@ https://github.com/UniversalRobots/Universal_Robots_ROS_Driver
 
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md
 
+https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/README.md
+
+
+
+
 ```
 Polyscope: 3.15.8.106339 
 

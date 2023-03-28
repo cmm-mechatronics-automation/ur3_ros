@@ -1,8 +1,8 @@
 # Install URSIM in ubuntu 2004
 
-Download  URSIM from [here](https://www.universal-robots.com/download/software-cb-series/simulator-linux/offline-simulator-cb3-linux-ursim-3158/)
+Download  URSIM from [here](https://www.universal-robots.com/download/software-cb-series/simulator-linux/offline-simulator-cb3-linux-ursim-3158/) to install in ubuntu.
 
-Installing URSim in ubuntu, according to [here](https://forum.universal-robots.com/t/offline-simulator-e-series-ur-sim-for-linux-5-11-1-removes-all-installed-files/15384), breaks the ROS installation. Then, install the simulator URSim first, and then install ROS, at least for for the e-version.  It should be checked this condition happens with the CB version.
+But, installing URSim in ubuntu, according to [here](https://forum.universal-robots.com/t/offline-simulator-e-series-ur-sim-for-linux-5-11-1-removes-all-installed-files/15384), breaks the ROS installation. Then, install the simulator URSim first, and then install ROS, at least for for the e-version.  It should be checked this condition happens with the CB version.
 
 see [1](https://github.com/arunavanag591/ursim), [2](https://www.mathworks.com/help/supportpkg/urseries/ug/setup-ursim-offline-simulator.html) step by step how to install URSim.
 
@@ -10,21 +10,23 @@ Instead we install VM.
 
 # Install virtual Box 
 
-see [info VE](https://www.universal-robots.com/download/software-e-series/simulator-non-linux/offline-simulator-e-series-ur-sim-for-non-linux-594/),[info V CB](https://www.universal-robots.com/download/software-cb-series/simulator-non-linux/offline-simulator-cb-series-non-linux-ursim-3158/) ,[info2 doc](https://academy.universal-robots.com/media/r3xlna5e/ursim_vmoracle_installation_guide_v3_es.pdf) 
+Download the virtual machine, [UR Vrs.E](https://www.universal-robots.com/download/software-e-series/simulator-non-linux/offline-simulator-e-series-ur-sim-for-non-linux-594/),[UR Vrs.CB](https://www.universal-robots.com/download/software-cb-series/simulator-non-linux/offline-simulator-cb-series-non-linux-ursim-3158/). See [doc](https://academy.universal-robots.com/media/r3xlna5e/ursim_vmoracle_installation_guide_v3_es.pdf) 
 
 ```
-7z x URSim_VIRTUAL-3.14.3.1031232.rar
+7z x URSim_VIRTUAL-3.14.3.1031232.rar -o/path/to/folder/
 ```
 
-## Config ethernet in Vbox
+Open VM (Virtual machine) with Vbox and configure the network.
 
-Configurar una red __Adaptador sólo-anfitrión (Host-only Adapter)__ y luego en la MV configurar este modo de operación de la red.
+## Config the network in Vbox
 
-## How to use with the VM and ROS
+Configure the  network as __Host-only Adapter (Adaptador sólo-anfitrión)__ in the VM.
 
-ver [link](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md)
+# How to use URSim (in the VM) and ROS
 
-Run the VM  and open URSim.
+See [this doc](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md)
+
+Run the VM  and open URSim with UR3.
 
 ```
 roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=192.168.56.102
@@ -37,14 +39,26 @@ roslaunch ur_robot_driver example_rviz.launch
 
 
 
-## Use moveit! [doc]()
+# Use moveit! [repo](https://github.com/jcorredorc/ur_haptics_teleop_ros)
 
-[ref1](https://youtu.be/ayp87SjrwPc)
+<!-- [ref1](https://youtu.be/ayp87SjrwPc) -->
+
+
+Downlaod [URCap external control](https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases) to use Moveit!. Copy the urcap external control to the Vbox.
+
 
 ```
-roslaunch ur3_moveit_config moveit_planning_execution.launch sim:=true
+scp /home/user/externalcontrol-1.0.5.urcap  ur@192.168.56.102:/home/ur/ursim-current/programs
+```
 
-roslaunch ur_robot_driver example_rviz.launch
+
+Then [follow the instructions](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/install_urcap_cb3.md) to install and configure it.
+
+Then run moveit!
+
+```
+roslaunch ur3_moveit_config moveit_planning_execution.launch
+
 ```
 
 ```
@@ -52,7 +66,9 @@ roslaunch ur3_moveit_config moveit_rviz.launch
 
 ```
 
-Luego de hacer la planeación en rviz, sale el error
+Then planning with Rviz. 
+
+<!-- sale el error
 
 
 ```
@@ -80,17 +96,19 @@ a
 ```
 action_ns: scaled_pos_traj_controller/follow_joint_trajectory
 
-```
+``` -->
 
 -----
 
-Control the robot using the test_move script
+# Control the robot using the test_move script
+
+Once URCaps external control is installed,
 
 ```
 rosrun ur_robot_driver test_move
 ```
 
-Get the error
+<!-- Get the error
 
 ```
 [ERROR] [1679953069.855385572]: A controller named 'scaled_vel_joint_traj_controller' was already loaded inside the controller manager
@@ -100,6 +118,8 @@ Get the error
 ```
 
 see [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/480#issuecomment-934506448), [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/380#issuecomment-844124263), [this](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/README.md)
+
+
 
 
 try to install
@@ -115,14 +135,10 @@ Keeps the same problem,
 
 PArece que lo unico es instalar URcaps, para poder controlar el robot desde ROS. La pregunta es si esto se puede hacer en URSim?? porque la Vbox no deja montar una USB!
 
-copy the urcap external control to the Vbox.
-
-```
-scp /home/user/externalcontrol-1.0.5.urcap  ur@192.168.56.102:/home/ur/ursim-current/programs
-```
 
 
-Ok solved the issue! :D
+
+Ok solved the issue! :D -->
 
 
 
