@@ -68,6 +68,9 @@ roslaunch ur3_moveit_config moveit_rviz.launch
 
 Then planning with Rviz. 
 
+
+![](images/Ur3_ursim_moveit.gif)
+
 <!-- sale el error
 
 
@@ -105,8 +108,13 @@ action_ns: scaled_pos_traj_controller/follow_joint_trajectory
 Once URCaps external control is installed,
 
 ```
+roslaunch ur_robot_driver example_rviz.launch
+
 rosrun ur_robot_driver test_move
 ```
+
+
+![](images/Ur3_ursim_testmove.gif)
 
 <!-- Get the error
 
