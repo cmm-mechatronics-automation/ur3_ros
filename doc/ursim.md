@@ -10,10 +10,10 @@ Instead we install VM.
 
 # Install virtual Box 
 
-Download the virtual machine, [UR Vrs.E](https://www.universal-robots.com/download/software-e-series/simulator-non-linux/offline-simulator-e-series-ur-sim-for-non-linux-594/),[UR Vrs.CB](https://www.universal-robots.com/download/software-cb-series/simulator-non-linux/offline-simulator-cb-series-non-linux-ursim-3158/). See [doc](https://academy.universal-robots.com/media/r3xlna5e/ursim_vmoracle_installation_guide_v3_es.pdf) 
+Download the virtual machine, [UR Vrs.E](https://www.universal-robots.com/download/software-e-series/simulator-non-linux/offline-simulator-e-series-ur-sim-for-non-linux-594/), [UR Vrs.CB](https://www.universal-robots.com/download/software-cb-series/simulator-non-linux/offline-simulator-cb-series-non-linux-ursim-3158/). See [doc](https://academy.universal-robots.com/media/r3xlna5e/ursim_vmoracle_installation_guide_v3_es.pdf) 
 
 ```
-7z x URSim_VIRTUAL-3.14.3.1031232.rar -o/path/to/folder/
+7z x URSim_VIRTUAL-3.14.3.1031232.rar -o/path/to/folder/to/extract
 ```
 
 Open VM (Virtual machine) with Vbox and configure the network.
@@ -26,7 +26,7 @@ Configure the  network as __Host-only Adapter (Adaptador sólo-anfitrión)__ in 
 
 See [this doc](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/usage_example.md)
 
-Run the VM  and open URSim with UR3.
+Run the VM and open URSim with UR3.
 
 ```
 roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=192.168.56.102
@@ -44,7 +44,7 @@ roslaunch ur_robot_driver example_rviz.launch
 <!-- [ref1](https://youtu.be/ayp87SjrwPc) -->
 
 
-Downlaod [URCap external control](https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases) to use Moveit!. Copy the urcap external control to the Vbox.
+Download [URCap external control](https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases) to use Moveit!. Copy the urcap external control to the Vbox.
 
 
 ```
@@ -59,14 +59,11 @@ Then run moveit!
 ```
 roslaunch ur3_moveit_config moveit_planning_execution.launch
 
-```
-
-```
 roslaunch ur3_moveit_config moveit_rviz.launch
 
 ```
 
-Then planning with Rviz. 
+Planning with Rviz. 
 
 
 ![](images/Ur3_ursim_moveit.gif)
@@ -116,6 +113,10 @@ rosrun ur_robot_driver test_move
 
 ![](images/Ur3_ursim_testmove.gif)
 
+
+
+See the *test_move* code [here](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/395c0541b20d0da2cd480e2ad85b2100410fb043/ur_robot_driver/scripts/test_move).
+
 <!-- Get the error
 
 ```
@@ -148,6 +149,31 @@ PArece que lo unico es instalar URcaps, para poder controlar el robot desde ROS.
 
 Ok solved the issue! :D -->
 
+
+## Moveit! examples from [ur_haptics_teleop_ros](https://github.com/jcorredorc/ur_haptics_teleop_ros.git)
+
+URSim working with the __move_group__
+
+clone the repo
+
+```
+git clone  https://github.com/jcorredorc/ur_haptics_teleop_ros.git
+```
+
+Open URSim and run a program with external_control.
+
+```
+roslaunch ur3_moveit_config moveit_planning_execution.launch
+
+roslaunch ur3_moveit_config moveit_rviz.launch
+
+```
+
+then 
+
+```
+rosrun ur_haptics_teleop_ros move_group_pose_goal_node
+```
 
 
 ## URSIM for UrCaps development
