@@ -6,7 +6,29 @@ But, installing URSim in ubuntu, according to [here](https://forum.universal-rob
 
 see [1](https://github.com/arunavanag591/ursim), [2](https://www.mathworks.com/help/supportpkg/urseries/ug/setup-ursim-offline-simulator.html) step by step how to install URSim.
 
-Instead we install VM.
+
+
+----
+
+Se debe cambiar en el archivo start-ursim.sh la variable 
+
+```
+$URSIM_ROOT='/path/to/ursim_folder'
+```
+
+
+Se debe ejecutar una vez como sudo.
+
+```
+sudo  ./start-ursim UR3
+```
+
+luego si se puede ejecutar con exito sin sudo.
+
+configuración de red para urcaps exernal control.
+
+
+Instead, install VM.
 
 # Install virtual Box 
 
