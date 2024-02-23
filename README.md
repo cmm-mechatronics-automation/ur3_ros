@@ -392,6 +392,7 @@ sudo ufw status: inactive ##firewall disable
 
 nc -lk 50002 ## check this open port
 
+
 para revisar
 
 https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/590

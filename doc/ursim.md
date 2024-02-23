@@ -174,7 +174,7 @@ Ok solved the issue! :D -->
 
 ## Moveit! examples from [ur_haptics_teleop_ros](https://github.com/jcorredorc/ur_haptics_teleop_ros.git)
 
-URSim working with the __move_group__
+URSim working with `move_group`
 
 clone the repo
 
